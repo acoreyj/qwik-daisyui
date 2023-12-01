@@ -5,9 +5,8 @@ import {
   ServiceWorkerRegister,
 } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
-
+import 'cal-sans';
 import globalStyles from './global.css?inline';
-
 export default component$(() => {
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
@@ -16,7 +15,6 @@ export default component$(() => {
    * Don't remove the `<head>` and `<body>` elements.
    */
   useStyles$(globalStyles);
-
   return (
     <QwikCityProvider>
       <head>

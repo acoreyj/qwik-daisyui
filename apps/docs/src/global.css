@@ -1,126 +1,86 @@
-/**
- * WHAT IS THIS FILE?
- *
- * Globally applied styles. No matter which components are in the page or matching route,
- * the styles in here will be applied to the Document, without any sort of CSS scoping.
- *
- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --qwik-dark-blue: #006ce9;
-  --qwik-light-blue: #18b6f6;
-  --qwik-light-purple: #ac7ff4;
-  --qwik-dark-purple: #713fc2;
+@font-face {
+  font-family: 'Geologica';
+  src: url('./fonts/geologica/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf')
+    format('truetype-variations');
+  font-weight: 100 900; /* range depending on the font */
+  font-stretch: 75% 125%; /* range depending on the font */
+  font-style: oblique -12deg 0deg; /* or italic, oblique */
 }
 
-body {
-  background-color: #fafafa;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  padding: 20px 20px 40px 20px;
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: italic;
+  font-display: swap;
 }
 
-main {
-  max-width: 760px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0px 0px 130px -50px var(--qwik-light-purple);
-  overflow: hidden;
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-display: swap;
 }
 
 h1,
-h2 {
-  margin: 0 0 5px 0;
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cal Sans', 'ui-sans-serif', 'system-ui', '-apple-system',
+    'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial',
+    'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* cal sans font settings */
+body h1 {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+body h2 {
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+body h3 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.015em;
+}
+body h4 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  letter-spacing: 0.02em;
+}
+body h5 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.03em;
+}
+body h6 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.04em;
 }
 
-.lightning {
-  filter: hue-rotate(180deg);
-}
-
-section {
-  padding: 20px;
-  border-bottom: 10px solid var(--qwik-dark-blue);
-}
-
-ul {
-  list-style-type: square;
-  margin: 5px 0 30px 0;
-  padding-left: 25px;
-}
-
-li {
-  padding: 8px 0;
-}
-
-li::marker {
-  color: var(--qwik-light-blue);
-}
-
-a,
-a:visited {
-  color: var(--qwik-dark-blue);
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-table.commands {
-  margin: 0 0 30px 0;
-}
-
-.commands td {
-  padding: 5px;
-}
-
-.commands td:first-child {
-  white-space: nowrap;
-  padding-right: 20px;
-}
-
-code {
-  font-family: Menlo, Monaco, Courier New, monospace;
-  font-size: 0.9em;
-  background-color: rgb(224, 224, 224);
-  padding: 2px 4px;
-  border-radius: 3px;
-  border-bottom: 2px solid #bfbfbf;
-}
-
-footer {
-  padding: 15px;
-  text-align: center;
-  font-size: 0.8em;
-}
-
-footer a {
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-a.mindblow {
-  margin: 0 auto;
-  display: block;
-  background: var(--qwik-light-purple);
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 0;
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-  width: fit-content;
-  border-bottom: 4px solid black;
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🤯</text></svg>")
-      16 0,
-    auto; /*!emojicursor.app*/
-}
-
-a.mindblow:hover {
-  border-bottom-width: 0px;
-  margin-bottom: 4px;
-  transform: translateY(4px);
+/* code block settings */
+body main code,
+body main code span,
+body main code pre,
+body main code kbd,
+body main code samp,
+body main kbd,
+body main samp,
+body main pre {
+  font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospaceui !important;
+  letter-spacing: 0rem !important;
+  line-height: 1rem !important;
+  font-size: 1rem !important;
 }

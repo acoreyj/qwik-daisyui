@@ -5,3 +5,4 @@ export * from './lib/Navbar';
 export * from './lib/DaisyLink';
 export * from './lib/Menu';
 export * from './lib/DaisyCityLink';
+export * from './lib/Card';

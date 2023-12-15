@@ -18,7 +18,7 @@ export default component$(() => {
                 class: 'text-lg font-bold text-blue-900 dark:text-blue-300',
                 label: 'Home',
                 variant: {
-                  option: 'hover',
+                  hover: 'enable',
                 },
               },
             ]}

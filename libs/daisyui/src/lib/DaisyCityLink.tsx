@@ -15,8 +15,8 @@ const cvaFn = cva({
       warning: 'link-warning',
       error: 'link-error',
     },
-    option: {
-      hover: 'link-hover',
+    hover: {
+      enable: 'link-hover',
     },
   },
 });

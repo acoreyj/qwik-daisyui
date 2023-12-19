@@ -2,33 +2,35 @@ import { QwikIntrinsicElements, component$ } from '@builder.io/qwik';
 import { cva, cx } from 'cva';
 import type { VariantProps } from 'cva';
 
-export const toggleConfig = {
-  base: 'toggle',
+export const config = {
+  base: 'checkbox',
   variants: {
     theme: {
-      primary: 'toggle-primary',
-      secondary: 'toggle-secondary',
-      accent: 'toggle-accent',
-      info: 'toggle-info',
-      success: 'toggle-success',
-      warning: 'toggle-warning',
-      error: 'toggle-error',
+      none: '',
+      primary: 'checkbox-primary',
+      secondary: 'checkbox-secondary',
+      accent: 'checkbox-accent',
+      info: 'checkbox-info',
+      success: 'checkbox-success',
+      warning: 'checkbox-warning',
+      error: 'checkbox-error',
     },
     size: {
-      xs: 'toggle-xs',
-      sm: 'toggle-sm',
-      md: 'toggle-md',
-      lg: 'toggle-lg',
+      xs: 'checkbox-xs',
+      sm: 'checkbox-sm',
+      md: 'checkbox-md',
+      lg: 'checkbox-lg',
     },
   },
 };
-const cvaFn = cva(toggleConfig);
+const cvaFn = cva(config);
 
 type InputProps = QwikIntrinsicElements['input'];
-export type ToggleProps = {
+
+export type Props = {
   variant?: VariantProps<typeof cvaFn>;
 } & Omit<InputProps, 'type'>;
-export const Toggle = component$((props: ToggleProps) => {
+export const Component = component$((props: Props) => {
   const { variant, ...rest } = props;
   return (
     <>

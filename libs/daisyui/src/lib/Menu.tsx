@@ -34,7 +34,7 @@ export const Menu = component$((props: MenuProps) => {
   return (
     <>
       <ul
-        aria-role="menubar"
+        role="menubar"
         {...props}
         class={cx(props.class, cvaFn(props.variant))}
       >
@@ -46,7 +46,7 @@ export const Menu = component$((props: MenuProps) => {
         ) : null}
         <Slot />
         {props?.items?.map((item, i) => (
-          <li aria-role="menuitem" key={i}>
+          <li role="menuitem" key={i}>
             {item.useQwikCityLink ? (
               <DaisyCityLink {...item}>{item.label}</DaisyCityLink>
             ) : (

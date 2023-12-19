@@ -19,7 +19,8 @@
     "types": ["node", "vite/client", "vitest"],
     "paths": {
       "@qwikbits/daisyui": ["libs/daisyui/src/index.ts"],
-      "@qwikbits/utils": ["libs/utils/src/index.ts"]
+      "@qwikbits/utils": ["libs/utils/src/index.ts"],
+      "~/*": ["apps/docs/src/*"]
     }
   },
   "references": [

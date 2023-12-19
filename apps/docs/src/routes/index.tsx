@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { CodeBlock } from '../components/code-block/code-block';
+import { CodeBlock } from '~/components/code-block/code-block';
 
 export default component$(() => {
   return (
@@ -32,7 +32,7 @@ export default component$(() => {
             language="javascript"
             code={'npm install @qwikbits/daisyui @qwikbits/utils'}
           />
-          Headless UI Docs
+          daisyUI Docs
         </div>
         <div class="flex flex-col gap-8 h-full">
           <h3>Utils</h3>

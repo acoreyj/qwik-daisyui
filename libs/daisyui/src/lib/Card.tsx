@@ -1,49 +1,90 @@
-import { QwikIntrinsicElements, component$ } from '@builder.io/qwik';
+import { QwikIntrinsicElements, Slot, component$ } from '@builder.io/qwik';
 import { cva, cx } from 'cva';
 import type { VariantProps } from 'cva';
-const cvaFn = cva({
+import { getModifiersClasses } from './utils';
+export const config = {
   base: 'card',
   variants: {
     theme: {
-      primary: 'toggle-primary',
-      secondary: 'toggle-secondary',
-      accent: 'toggle-accent',
-      info: 'toggle-info',
-      success: 'toggle-success',
-      warning: 'toggle-warning',
-      error: 'toggle-error',
+      none: '',
+      neutral: 'bg-neutral',
+      primary: 'bg-primary',
+      secondary: 'bg-secondary',
+      accent: 'bg-accent',
+      info: 'bg-info',
+      success: 'bg-success',
+      warning: 'bg-warning',
+      error: 'bg-error',
     },
-    size: {
-      xs: 'toggle-xs',
-      sm: 'toggle-sm',
-      md: 'toggle-md',
-      lg: 'toggle-lg',
+    padding: {
+      default: '',
+      normal: 'card-normal',
+      compact: 'card-compact',
+    },
+    image: {
+      normal: '',
+      side: 'card-side',
+      full: 'image-full',
     },
   },
-});
+  modifiers: {
+    border: 'card-bordered',
+    glass: 'glass',
+  },
+};
+const cvaFn = cva(config);
 
-type InputProps = QwikIntrinsicElements['input'];
-export type CardProps = {
+type DivProps = QwikIntrinsicElements['div'];
+export type Props = {
   variant?: VariantProps<typeof cvaFn>;
-} & Omit<InputProps, 'type'>;
-export const Card = component$((props: CardProps) => {
-  const { variant, ...rest } = props;
+  modifiers?: Record<string, boolean>;
+  image?: {
+    src: string;
+    width: number;
+    height: number;
+    alt?: string;
+  };
+  title?: string;
+  description?: string;
+} & Omit<DivProps, 'type'>;
+export const Component = component$((props: Props) => {
+  const { variant, modifiers, ...rest } = props;
   return (
     <>
-      <div class={cx(props.class, cvaFn(variant))}>
-        <div class="card-body">
-          <h2 class="card-title">Card title!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <input
+      <div
         {...rest}
-        type="checkbox"
-        class={cx(props.class, cvaFn(variant))}
-      />
+        class={cx(
+          props.class,
+          cvaFn(variant),
+          getModifiersClasses(config.modifiers, modifiers)
+        )}
+      >
+        <Slot name="start" />
+        <Slot name="image" />
+        {props.image ? (
+          <figure>
+            <img
+              width={props.image.width}
+              height={props.image.height}
+              src={props.image.src}
+              alt={props.image.alt}
+            />
+          </figure>
+        ) : null}
+        <div class="card-body">
+          <Slot name="body-start" />
+          <Slot name="title" />
+          {props.title ? <h2 class="card-title">{props.title}</h2> : null}
+          <Slot name="description" />
+          {props.description ? <p>{props.description}</p> : null}
+          <div class="card-actions justify-end">
+            <Slot name="actions" />
+          </div>
+          <Slot name="body-end" />
+        </div>
+        <Slot name="image-end" />
+        <Slot name="end" />
+      </div>
     </>
   );
 });

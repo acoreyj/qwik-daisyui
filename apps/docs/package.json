@@ -1,3 +1,6 @@
 {
-  "name": "docs"
+  "name": "docs",
+  "devDependencies": {
+    "@types/prismjs": "^1.26.3"
+  }
 }

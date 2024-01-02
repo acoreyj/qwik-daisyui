@@ -1,11 +1,7 @@
-import {
-  ClassList,
-  component$,
-  useStyles$,
-  useStylesScoped$,
-} from '@builder.io/qwik';
-import prismjs from 'prismjs';
+import { ClassList, component$, useSignal, useStyles$ } from '@builder.io/qwik';
 // Set to global so that prism language plugins can find it.
+
+import prismjs from 'prismjs';
 const _global =
   (typeof globalThis !== 'undefined' && globalThis) ||
   (typeof global !== 'undefined' && global) ||
@@ -13,7 +9,7 @@ const _global =
   (typeof this !== 'undefined' && this) ||
   (typeof window !== 'undefined' && window);
 (_global as { PRISM?: typeof prismjs }).PRISM = prismjs;
-import 'prismjs/components/prism-jsx'; // needs PRISM global
+import jsx from './prism-jsx';
 import stylesDark from './prism-night-owl.css?inline';
 import styles from './prism-vs.css?inline';
 interface CodeBlockProps {
@@ -29,10 +25,11 @@ interface CodeBlockProps {
   code: string;
   class?: ClassList;
   codeClass?: ClassList;
+  wrapperClass?: ClassList;
 }
 
 export const CodeBlock = component$((props: CodeBlockProps) => {
-  useStylesScoped$(styles);
+  useStyles$(styles);
   useStyles$(stylesDark);
   let language = props.language;
   if (!language && props.path && props.code) {
@@ -46,7 +43,15 @@ export const CodeBlock = component$((props: CodeBlockProps) => {
         ? 'css'
         : undefined;
   }
+  if (language && !prismjs.languages[language]) {
+    if (language === 'jsx') {
+      jsx(prismjs);
+    } else {
+      language = 'javascript';
+    }
+  }
 
+  const status = useSignal('');
   if (language && prismjs.languages[language]) {
     const highlighted = prismjs.highlight(
       props.code,
@@ -55,13 +60,44 @@ export const CodeBlock = component$((props: CodeBlockProps) => {
     );
     const className = `language-${language}`;
     return (
-      <div class="code-block">
+      <div class={['code-block relative', props.wrapperClass]}>
         <pre class={[className, props.class]}>
           <code
             class={[className, props.codeClass]}
             dangerouslySetInnerHTML={highlighted}
           />
         </pre>
+        <button
+          onClick$={async () => {
+            try {
+              await navigator.clipboard.writeText(props.code);
+              status.value = 'success';
+            } catch (err) {
+              status.value = 'error';
+            }
+            setTimeout(() => {
+              status.value = '';
+            }, 2000);
+          }}
+          class={[
+            'btn btn-square btn-sm absolute right-8 top-3',
+            {
+              'btn-neutral': !status.value,
+              'btn-success': status.value === 'success',
+              'btn-error': status.value === 'error',
+            },
+          ]}
+        >
+          {!status.value ? (
+            <div class={['text-xl icon-[lucide--clipboard-copy]']}></div>
+          ) : null}
+          {status.value === 'success' ? (
+            <div class={['text-xl icon-[lucide--clipboard-check]']}></div>
+          ) : null}
+          {status.value === 'error' ? (
+            <div class={['text-xl icon-[lucide--clipboard-x]']}></div>
+          ) : null}
+        </button>
       </div>
     );
   }

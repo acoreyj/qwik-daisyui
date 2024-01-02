@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "nx serve docs",
-    "build": "nx build docs"
+    "build": "nx build docs",
+    "deploy:images": "rclone sync ./apps/docs/qwikbits-images/ r2:images/images/qwikbits/ -P"
   },
   "dependencies": {
     "cal-sans": "^1.0.1",
@@ -40,7 +41,7 @@
     "nx": "17.1.3",
     "postcss": "~8.4.16",
     "prettier": "^2.6.2",
-    "tailwindcss": "~3.1.8",
+    "tailwindcss": "~3.4.0",
     "typescript": "~5.2.2",
     "undici": "^5.22.0",
     "vite": "~4.4.11",

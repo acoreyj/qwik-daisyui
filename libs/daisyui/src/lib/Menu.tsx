@@ -1,9 +1,12 @@
 import { type QwikIntrinsicElements, component$, Slot } from '@builder.io/qwik';
 import { cx, cva, VariantProps } from 'cva';
-import { DaisyLink, DaisyLinkProps } from './DaisyLink';
-import { DaisyCityLink, DaisyCityLinkProps } from './DaisyCityLink';
+import { Component as DaisyLink, Props as DaisyLinkProps } from './DaisyLink';
+import {
+  Component as DaisyCityLink,
+  Props as DaisyCityLinkProps,
+} from './DaisyCityLink';
 export type ULProps = QwikIntrinsicElements['ul'];
-const cvaFn = cva({
+export const config = {
   base: 'menu',
   variants: {
     size: {
@@ -17,35 +20,33 @@ const cvaFn = cva({
       vertical: 'menu-vertical',
     },
   },
-});
+};
+const cvaFn = cva(config);
 export type MenuItemProps = {
   label: string;
   useQwikCityLink?: boolean;
 } & (DaisyLinkProps | DaisyCityLinkProps);
 
-export type MenuProps = {
+export type Props = {
   variant?: VariantProps<typeof cvaFn>;
   title?: string;
   hasTitle?: boolean;
   items?: MenuItemProps[];
 } & ULProps;
 
-export const Menu = component$((props: MenuProps) => {
+export const Component = component$((props: Props) => {
+  const { variant, title, hasTitle, items, ...rest } = props;
   return (
     <>
-      <ul
-        role="menubar"
-        {...props}
-        class={cx(props.class, cvaFn(props.variant))}
-      >
-        {props.title || props.hasTitle ? (
+      <ul role="menubar" {...rest} class={cx(props.class, cvaFn(variant))}>
+        {title || hasTitle ? (
           <li class="menu-title">
             <Slot name="title" />
-            {props.title ? <span>{props.title}</span> : null}
+            {title ? <span>{title}</span> : null}
           </li>
         ) : null}
         <Slot />
-        {props?.items?.map((item, i) => (
+        {items?.map((item, i) => (
           <li role="menuitem" key={i}>
             {item.useQwikCityLink ? (
               <DaisyCityLink {...item}>{item.label}</DaisyCityLink>

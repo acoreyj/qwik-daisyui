@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Geologica';
-  src: url('./fonts/geologica/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf')
+  src: url('/fonts/geologica/Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf')
     format('truetype-variations');
   font-weight: 100 900; /* range depending on the font */
   font-stretch: 75% 125%; /* range depending on the font */
@@ -83,4 +83,8 @@ body main pre {
   letter-spacing: 0rem !important;
   line-height: 1rem !important;
   font-size: 1rem !important;
+}
+
+.mockup-code pre::before {
+  display: none;
 }

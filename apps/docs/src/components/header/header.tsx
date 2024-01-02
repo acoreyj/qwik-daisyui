@@ -1,29 +1,54 @@
-import { component$, useContext } from '@builder.io/qwik';
+import { component$, useContext, useStore, useTask$ } from '@builder.io/qwik';
 import { QwikBitsLogo } from '../icons/qwikbits';
-import { Navbar, DaisyLink, Menu } from '@qwikbits/daisyui';
+import { Navbar, DaisyLink, Menu, MenuProps } from '@qwikbits/daisyui';
 import { ThemeContext } from '../../routes/layout';
+import { useLocation } from '@builder.io/qwik-city';
 
 export default component$(() => {
   const lightMode = useContext(ThemeContext);
+  const loc = useLocation();
+  const items = useStore<{ menuItems: MenuProps['items'] }>(
+    { menuItems: [] },
+    {
+      deep: false,
+    }
+  );
+  const inactiveClass = 'text-primary dark:text-secondary';
+  const activeClass =
+    'inline-block bg-gradient-to-r from-accent via-primary to-secondary dark:from-accent from-25% via-50% to-75% dark:via-secondary dark:to-accent bg-clip-text !text-transparent';
+  useTask$(({ track }) => {
+    track(() => loc.url.pathname);
+    items.menuItems = [
+      {
+        useQwikCityLink: true,
+        href: '/',
+        class: `p-0 m-2 underline-offset-8 decoration-2 text-lg font-bold ${
+          loc.url.pathname === '/' ? activeClass : inactiveClass
+        }`,
+        label: 'Home',
+        modifiers: {
+          hover: true,
+        },
+      },
+      {
+        useQwikCityLink: true,
+        href: '/components/',
+        class: `p-0 m-2 underline-offset-8 decoration-2 text-lg font-bold ${
+          loc.url.pathname === '/components/' ? activeClass : inactiveClass
+        }`,
+        label: 'Components',
+        modifiers: {
+          hover: true,
+        },
+      },
+    ];
+  });
   return (
     <header class="">
       <Navbar class="bg-neutral">
         <div q:slot="start">
-          <Menu
-            variant={{ orientation: 'horizontal' }}
-            items={[
-              {
-                useQwikCityLink: true,
-                href: '/',
-                class: 'text-lg font-bold text-blue-900 dark:text-blue-300',
-                label: 'Home',
-                variant: {
-                  hover: 'enable',
-                },
-              },
-            ]}
-          >
-            <li aria-role="menuitem" q:slot="end">
+          <Menu variant={{ orientation: 'horizontal' }} items={items.menuItems}>
+            <li role="menuitem" q:slot="end">
               <DaisyLink
                 href="https://github.com/genie-design/qwikbits"
                 target="_blank"

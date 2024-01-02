@@ -52,7 +52,7 @@
 /* Code blocks */
 .dark pre[class*='language-'] {
   padding: 1em;
-  margin: 0.5em 0;
+  margin: 0.5em 2ch;
   overflow: auto;
   border: 0;
 }

@@ -5,6 +5,11 @@ import { CodeBlock } from '~/components/code-block/code-block';
 export default component$(() => {
   return (
     <div class="flex flex-col gap-16 mt-8">
+      <sl-button>Click me</sl-button>
+      <sl-tooltip content="This is a tooltip">
+        <sl-button>Hover Me</sl-button>
+      </sl-tooltip>
+
       <div class="flex flex-col items-center">
         <h1 class="w-fit flex items-center font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-[#18b6f6] to-[#ac7ef4]">
           Qwik Bits

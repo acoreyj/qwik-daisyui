@@ -12,6 +12,7 @@ const _global =
 import jsx from './prism-jsx';
 import stylesDark from './prism-night-owl.css?inline';
 import styles from './prism-vs.css?inline';
+import { Tooltip } from '@qwikbits/daisyui';
 interface CodeBlockProps {
   path?: string;
   language?:
@@ -67,37 +68,43 @@ export const CodeBlock = component$((props: CodeBlockProps) => {
             dangerouslySetInnerHTML={highlighted}
           />
         </pre>
-        <button
-          onClick$={async () => {
-            try {
-              await navigator.clipboard.writeText(props.code);
-              status.value = 'success';
-            } catch (err) {
-              status.value = 'error';
-            }
-            setTimeout(() => {
-              status.value = '';
-            }, 2000);
-          }}
-          class={[
-            'btn btn-square btn-sm absolute right-8 top-3',
-            {
-              'btn-neutral': !status.value,
-              'btn-success': status.value === 'success',
-              'btn-error': status.value === 'error',
-            },
-          ]}
+        <Tooltip
+          class=" absolute right-8 top-3"
+          tip={status.value === 'success' ? 'Copied!' : 'Copy'}
+          variant={{ direction: 'left' }}
         >
-          {!status.value ? (
-            <div class={['text-xl icon-[lucide--clipboard-copy]']}></div>
-          ) : null}
-          {status.value === 'success' ? (
-            <div class={['text-xl icon-[lucide--clipboard-check]']}></div>
-          ) : null}
-          {status.value === 'error' ? (
-            <div class={['text-xl icon-[lucide--clipboard-x]']}></div>
-          ) : null}
-        </button>
+          <button
+            onClick$={async () => {
+              try {
+                await navigator.clipboard.writeText(props.code);
+                status.value = 'success';
+              } catch (err) {
+                status.value = 'error';
+              }
+              setTimeout(() => {
+                status.value = '';
+              }, 2000);
+            }}
+            class={[
+              'btn btn-square btn-sm',
+              {
+                'btn-neutral': !status.value,
+                'btn-success': status.value === 'success',
+                'btn-error': status.value === 'error',
+              },
+            ]}
+          >
+            {!status.value ? (
+              <div class={['text-xl icon-[lucide--clipboard-copy]']}></div>
+            ) : null}
+            {status.value === 'success' ? (
+              <div class={['text-xl icon-[lucide--clipboard-check]']}></div>
+            ) : null}
+            {status.value === 'error' ? (
+              <div class={['text-xl icon-[lucide--clipboard-x]']}></div>
+            ) : null}
+          </button>
+        </Tooltip>
       </div>
     );
   }

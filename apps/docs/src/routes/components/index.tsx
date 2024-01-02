@@ -6,9 +6,13 @@ import TogglePreview from '~/components/previewComponents/TogglePreview';
 import NavbarPreview from '~/components/previewComponents/NavbarPreview';
 import DaisyLinkPreview from '~/components/previewComponents/DaisyLinkPreview';
 import CardPreview from '~/components/previewComponents/CardPreview';
+import TooltipPreview from '~/components/previewComponents/TooltipPreview';
+import ButtonPreview from '~/components/previewComponents/ButtonPreview';
 export default component$(() => {
   return (
     <div class="flex flex-col gap-6 my-6 lg:my-12">
+      <ButtonPreview />
+      <TooltipPreview />
       <CardPreview />
       <DaisyLinkPreview />
       <NavbarPreview />

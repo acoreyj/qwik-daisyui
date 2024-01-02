@@ -41,3 +41,13 @@ export {
   Component as Card,
   type Props as CardProps,
 } from './lib/Card';
+export {
+  config as tooltipConfig,
+  Component as Tooltip,
+  type Props as TooltipProps,
+} from './lib/Tooltip';
+export {
+  config as buttonConfig,
+  Component as Button,
+  type Props as ButtonProps,
+} from './lib/Button';

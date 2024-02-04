@@ -55,18 +55,20 @@ export const PreviewComponent = component$((props: Props) => {
     );
   const selectedVariants = useStore(selectedVariantsDefault);
   const selectedModifiers = useStore<Record<string, boolean>>({});
+  const onSelectedVariantsChange$ = props.onSelectedVariantsChange$;
+  const onSelectedModifiersChange$ = props.onSelectedModifiersChange$;
   const modifiersKeys = Object.keys(modifiers || {});
 
   useTask$(({ track }) => {
     track(selectedVariants);
-    if (props.onSelectedVariantsChange$) {
-      props.onSelectedVariantsChange$(selectedVariants);
+    if (onSelectedVariantsChange$) {
+      onSelectedVariantsChange$(selectedVariants);
     }
   });
   useTask$(({ track }) => {
     track(selectedModifiers);
-    if (props.onSelectedModifiersChange$) {
-      props.onSelectedModifiersChange$(selectedModifiers);
+    if (onSelectedModifiersChange$) {
+      onSelectedModifiersChange$(selectedModifiers);
     }
   });
   useTask$(async ({ track }) => {

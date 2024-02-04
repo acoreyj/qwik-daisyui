@@ -12,12 +12,12 @@
     "cal-sans": "^1.0.1",
     "cva": "^1.0.0-beta.1",
     "focusable-selectors": "^0.8.4",
-    "prismjs": "^1.29.0",
-    "qwik-nx": "2.0.2"
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "@builder.io/qwik": "~1.2.17",
-    "@builder.io/qwik-city": "~1.2.17",
+    "@builder.io/qwik": "~1.4.3",
+    "qwik-nx": "2.0.2",
+    "@builder.io/qwik-city": "~1.4.3",
     "@iconify/json": "^2.2.150",
     "@iconify/tailwind": "^0.1.4",
     "@nx/eslint": "17.1.3",

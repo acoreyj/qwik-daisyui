@@ -1,7 +1,11 @@
 /* eslint-disable qwik/use-method-usage */
-import { useSignal, component$, Slot } from '@builder.io/qwik';
+import {
+  useSignal,
+  component$,
+  Slot,
+  QwikIntrinsicElements,
+} from '@builder.io/qwik';
 import { useVisibleTask$ } from '@builder.io/qwik';
-import { QwikHTMLElement, QwikHTMLElementIntrinsic } from './QwikHTMLElement';
 import { isBrowser } from '@builder.io/qwik/build';
 export function use100vh(vh?: number) {
   const height = useSignal<number | undefined>(undefined);
@@ -16,7 +20,7 @@ export function use100vh(vh?: number) {
   });
   return height;
 }
-export type HeightScreenElementProps = QwikHTMLElementIntrinsic & {
+export type HeightScreenElementProps = QwikIntrinsicElements['div'] & {
   vh?: number;
   styles?: string[];
 };

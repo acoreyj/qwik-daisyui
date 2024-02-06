@@ -12,6 +12,7 @@
     }
   },
   "scripts": {
+    "build": "npx qwik build",
     "build.lib": "npx vite build --mode lib",
     "build.types": "npx tsc --emitDeclarationOnly --outDir lib-types -p tsconfig.types.json",
     "publish": "npm publish --access public"
@@ -26,6 +27,9 @@
   "type": "module",
   "peerDependencies": {
     "@builder.io/qwik": "*",
-    "@qwikbits/utils": "0.7.0"
-  }
+    "@qwikbits/utils": ">=0.7.0"
+  },
+  "description": "This library was generated with [Nx](https://nx.dev).",
+  "author": "",
+  "license": "MPL-2.0"
 }

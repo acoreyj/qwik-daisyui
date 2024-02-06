@@ -223,7 +223,7 @@ export function trapTabKey(el: HTMLElement, event: KeyboardEvent) {
  * @param {string} [origin] - the origin to prefix the href with, if it's not a full URL.
  * @return {string} - the pathname of the URL.
  */
-const getPathname = (href: string, origin?: string) => {
+export const getPathname = (href: string, origin?: string) => {
   if (origin && !href.includes('://')) {
     href = `${origin}${href.startsWith('/') ? href : `/${href}`}`;
   }

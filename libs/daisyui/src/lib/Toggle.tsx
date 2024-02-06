@@ -46,9 +46,9 @@ export const Component = component$((props: Props) => {
       props['bind:checked'].value = bindChecked.value;
     }
   });
-
   return (
     <>
+      {/* @ts-expect-error QwikIntrinsicElements['input'] type is wrong */}
       <input
         {...rest}
         bind:checked={bindChecked}

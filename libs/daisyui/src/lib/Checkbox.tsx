@@ -31,7 +31,7 @@ export const config = {
 };
 const cvaFn = cva(config);
 
-type InputProps = QwikIntrinsicElements['input'];
+type InputProps = Partial<QwikIntrinsicElements['input']>;
 
 export type Props = {
   variant?: VariantProps<typeof cvaFn>;
@@ -47,6 +47,7 @@ export const Component = component$((props: Props) => {
   });
 
   return (
+    // @ts-expect-error QwikIntrinsicElements['input'] type is wrong
     <input
       {...rest}
       bind:checked={bindChecked}

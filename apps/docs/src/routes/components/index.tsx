@@ -103,11 +103,6 @@ export default component$(() => {
           ))}
         </ul>
         <div class="flex flex-col gap-6 lg:ml-40">
-          <p class="bg-warning text-warning-content text-xl p-8 font-bold">
-            Regrettably, there appear to be complications with the Qwik
-            production build to Cloudflare, resulting in this page not being
-            functional.
-          </p>
           <ButtonPreview />
           <DaisyLinkPreview />
           <CardPreview />

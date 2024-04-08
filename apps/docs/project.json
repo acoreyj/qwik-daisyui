@@ -12,7 +12,8 @@
       },
       "configurations": {
         "preview": {},
-        "production": {}
+        "production": {},
+        "deno": {}
       }
     },
     "build.client": {
@@ -33,8 +34,8 @@
           "ssr": "src/entry.preview.tsx",
           "mode": "production"
         },
-        "production": {
-          "configFile": "apps/docs/adapters/cloudflare-pages/vite.config.ts"
+        "deno": {
+          "configFile": "apps/docs/adapters/deno/vite.config.ts"
         }
       }
     },
@@ -75,25 +76,34 @@
         "lintFilePatterns": ["apps/docs/**/*.{ts,tsx,js,jsx}"]
       }
     },
-    "deploy": {
-      "executor": "@k11r/nx-cloudflare-wrangler:deploy-page",
-      "options": {
-        "dist": "dist/apps/docs/client"
-      },
-      "dependsOn": ["build-cloudflare"]
-    },
-    "preview-cloudflare": {
-      "executor": "@k11r/nx-cloudflare-wrangler:serve-page",
-      "options": {
-        "dist": "dist/apps/docs/client"
-      },
-      "dependsOn": ["build-cloudflare"]
-    },
-    "build-cloudflare": {
+    "build-deno": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx nx run docs:build:production"
+        "command": "npx nx run docs:build:deno"
       }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "dist/apps/docs/client",
+        "command": "deployctl deploy --project=<YOUR-DENO-PROJECT-NAME> https://deno.land/std/http/file_server.ts --dry-run"
+      },
+      "configurations": {
+        "preview": {
+          "command": "deployctl deploy --project=<YOUR-DENO-PROJECT-NAME> https://deno.land/std/http/file_server.ts"
+        },
+        "production": {
+          "command": "deployctl deploy --project=<YOUR-DENO-PROJECT-NAME> --prod https://deno.land/std/http/file_server.ts"
+        }
+      },
+      "dependsOn": ["build-deno"]
+    },
+    "preview-deno": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "deno run --allow-net --allow-read --allow-env dist/apps/docs/server/entry.deno.js"
+      },
+      "dependsOn": ["build-deno"]
     }
   },
   "tags": []

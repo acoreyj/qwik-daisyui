@@ -75,7 +75,7 @@ export default component$(() => {
   });
   return (
     <>
-      <div class="grid grid-cols-1 lg:grid-cols-[max-content_1fr] pt-4 relative">
+      <div class="grid grid-cols-1 pt-4 relative">
         <div class="lg:hidden mt-20"></div>
         <div
           class="hidden invisible fixed bg-base-100 top-0 left-0 lg:block h-96 w-full mt-20"

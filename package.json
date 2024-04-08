@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@builder.io/qwik": "~1.4.3",
-    "qwik-nx": "2.0.2",
+    "qwik-nx": "2.2.1",
     "@builder.io/qwik-city": "~1.4.3",
     "@iconify/json": "^2.2.150",
     "@iconify/tailwind": "^0.1.4",
@@ -50,3 +50,4 @@
     "vitest": "~0.34.6"
   }
 }
+

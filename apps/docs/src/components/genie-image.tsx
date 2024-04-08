@@ -11,23 +11,23 @@ export default component$((props: Props) => {
   return (
     <>
       <picture>
-        <source srcSet={`${props.src}?f=avif&w=3840 3840w`} type="image/avif" />
-        <source srcSet={`${props.src}?f=avif&w=1920 1920w`} type="image/avif" />
-        <source srcSet={`${props.src}?f=avif&w=1280 1280w`} type="image/avif" />
-        <source srcSet={`${props.src}?f=avif&w=960 960w`} type="image/avif" />
-        <source srcSet={`${props.src}?f=avif&w=640 640w`} type="image/avif" />
+        <source srcset={`${props.src}?f=avif&w=3840 3840w`} type="image/avif" />
+        <source srcset={`${props.src}?f=avif&w=1920 1920w`} type="image/avif" />
+        <source srcset={`${props.src}?f=avif&w=1280 1280w`} type="image/avif" />
+        <source srcset={`${props.src}?f=avif&w=960 960w`} type="image/avif" />
+        <source srcset={`${props.src}?f=avif&w=640 640w`} type="image/avif" />
 
-        <source srcSet={`${props.src}?f=webp&w=3840 3840w`} type="image/webp" />
-        <source srcSet={`${props.src}?f=webp&w=1920 1920w`} type="image/webp" />
-        <source srcSet={`${props.src}?f=webp&w=1280 1280w`} type="image/webp" />
-        <source srcSet={`${props.src}?f=webp&w=960 960w`} type="image/webp" />
-        <source srcSet={`${props.src}?f=webp&w=640 640w`} type="image/webp" />
+        <source srcset={`${props.src}?f=webp&w=3840 3840w`} type="image/webp" />
+        <source srcset={`${props.src}?f=webp&w=1920 1920w`} type="image/webp" />
+        <source srcset={`${props.src}?f=webp&w=1280 1280w`} type="image/webp" />
+        <source srcset={`${props.src}?f=webp&w=960 960w`} type="image/webp" />
+        <source srcset={`${props.src}?f=webp&w=640 640w`} type="image/webp" />
 
-        <source srcSet={`${props.src}?w=3840 3840w`} />
-        <source srcSet={`${props.src}?w=1920 1920w`} />
-        <source srcSet={`${props.src}?w=1280 1280w`} />
-        <source srcSet={`${props.src}?w=960 960w`} />
-        <source srcSet={`${props.src}?w=640 640w`} />
+        <source srcset={`${props.src}?w=3840 3840w`} />
+        <source srcset={`${props.src}?w=1920 1920w`} />
+        <source srcset={`${props.src}?w=1280 1280w`} />
+        <source srcset={`${props.src}?w=960 960w`} />
+        <source srcset={`${props.src}?w=640 640w`} />
 
         <img
           src={`${props.src}`}

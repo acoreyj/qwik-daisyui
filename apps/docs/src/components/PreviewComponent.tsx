@@ -1,5 +1,4 @@
 import {
-  QwikChangeEvent,
   Slot,
   component$,
   useSignal,
@@ -30,6 +29,7 @@ export type Props = {
   hideDefaultComponent?: boolean;
   componentClass?: string;
   daisyHref?: string;
+  hideDaisyLink?: boolean;
 };
 export const PreviewComponent = component$((props: Props) => {
   const code = useSignal('');
@@ -141,13 +141,13 @@ export const PreviewComponent = component$((props: Props) => {
         id={componentId}
       >
         <div class="">
-          <h5 class="font-bold">
+          <h5 class="font-bold" id={`${componentId}-header`}>
             <a class="" href={`#${componentId}`}>
               <span class="opacity-20"># </span>
               {componentId}
             </a>
           </h5>
-          {props.daisyHref ? (
+          {props.daisyHref && !props.hideDaisyLink ? (
             <div class="gap-2">
               <DaisyLink
                 class="inline-flex gap-1 items-center font-mono bg-clip-text text-transparent text-lg bg-gradient-to-r from-[#1ad1a5] to-[#ff9903]"
@@ -180,8 +180,8 @@ export const PreviewComponent = component$((props: Props) => {
                       <span class="label-text">{key}:</span>
                       <Select
                         modifiers={{ border: true }}
-                        onChange$={(e) =>
-                          (selectedVariants[key] = e.target.value)
+                        onChange$={(e, el) =>
+                          (selectedVariants[key] = el.value)
                         }
                         key={key}
                         value={selectedVariants[key]}
@@ -214,8 +214,8 @@ export const PreviewComponent = component$((props: Props) => {
                       <span class="label-text">{key}:</span>
                       <Checkbox
                         checked={selectedModifiers[key]}
-                        onChange$={(e: QwikChangeEvent<HTMLInputElement>) => {
-                          if (e.target.checked) {
+                        onChange$={(e, element) => {
+                          if (element.checked) {
                             selectedModifiers[key] = true;
                           } else {
                             selectedModifiers[key] = false;

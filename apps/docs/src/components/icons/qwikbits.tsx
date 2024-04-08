@@ -7,7 +7,6 @@ export const QwikBitsLogo = () => (
     height="536.69727"
     viewBox="0 0 507.49435 536.69726"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:svg="http://www.w3.org/2000/svg"
   >
     <defs id="defs13" />
     <g id="g15" transform="translate(-235.27262,-157.38644)">

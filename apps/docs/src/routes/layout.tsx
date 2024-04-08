@@ -58,7 +58,7 @@ export default component$(() => {
         data-theme={lightMode.value ? 'qb-light' : 'qb-dark'}
       >
         <Header />
-        <section class="px-6">
+        <section class="px-6 z-10 pt-8">
           <Slot />
         </section>
       </VHElement>

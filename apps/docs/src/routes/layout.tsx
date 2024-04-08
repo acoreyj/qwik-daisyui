@@ -50,8 +50,9 @@ export default component$(() => {
   useContextProvider(ThemeContext, lightMode);
   return (
     <main>
-      <VHElement
+      <div
         class={{
+          'min-h-screen bg-base-100': true,
           dark: !lightMode.value,
           light: !!lightMode.value,
         }}
@@ -61,7 +62,7 @@ export default component$(() => {
         <section class="px-6 z-10 pt-8">
           <Slot />
         </section>
-      </VHElement>
+      </div>
     </main>
   );
 });

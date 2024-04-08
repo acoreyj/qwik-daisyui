@@ -166,7 +166,9 @@ export const PreviewComponent = component$((props: Props) => {
           <div class="form-control ">
             <label class="label cursor-pointer justify-start gap-8">
               <span class="label-text">Auto Preview:</span>
-              <Checkbox bind:checked={auto}></Checkbox>
+              <Checkbox
+                onChange$={(e, el) => (auto.value = el.checked)}
+              ></Checkbox>
             </label>
           </div>
         ) : null}
@@ -177,7 +179,7 @@ export const PreviewComponent = component$((props: Props) => {
                 return (
                   <div key={key} class="form-control">
                     <label class="label cursor-pointer">
-                      <span class="label-text">{key}:</span>
+                      <span class="label-text mr-4">{key}:</span>
                       <Select
                         modifiers={{ border: true }}
                         onChange$={(e, el) =>
@@ -211,7 +213,7 @@ export const PreviewComponent = component$((props: Props) => {
                 return (
                   <div key={key} class="form-control">
                     <label class="label cursor-pointer">
-                      <span class="label-text">{key}:</span>
+                      <span class="label-text mr-4">{key}:</span>
                       <Checkbox
                         checked={selectedModifiers[key]}
                         onChange$={(e, element) => {

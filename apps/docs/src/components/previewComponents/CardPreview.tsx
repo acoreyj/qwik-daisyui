@@ -51,7 +51,7 @@ export default component$(() => {
       >
         <Image
           q:slot="image"
-          src="https://www.qwikbits.dev/images/qwikbits/crab-nebula-webb.jpg"
+          source="https://www.qwikbits.dev/images/qwikbits/crab-nebula-webb.jpg"
           alt="webb"
           width={500}
           height={436}

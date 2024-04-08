@@ -1,10 +1,6 @@
-import {
-  component$,
-  useVisibleTask$,
-  useStore,
-  useStylesScoped$,
-} from '@builder.io/qwik';
+import { component$, useVisibleTask$, useStore } from '@builder.io/qwik';
 import { DocumentHead, useLocation } from '@builder.io/qwik-city';
+import CardPreview from '~/components/previewComponents/CardPreview';
 
 export default component$(() => {
   const loc = useLocation();
@@ -52,6 +48,7 @@ export default component$(() => {
           />
         )).reverse()}
       </div>
+      <CardPreview />
     </>
   );
 });

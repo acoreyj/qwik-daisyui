@@ -1,5 +1,5 @@
 import { component$, $ } from '@builder.io/qwik';
-import { Button, buttonConfig } from '@qwikbits/daisyui';
+import { buttonConfig, Button } from '@qwikbits/daisyui';
 import { PreviewComponent } from '~/components/PreviewComponent';
 
 export type Props = {
@@ -12,9 +12,9 @@ export default component$((props: Props) => {
   );
   return (
     <PreviewComponent
+      genieComponent={Button}
       hideDaisyLink={props.hideDaisyLink}
       componentId="Button"
-      genieComponent={Button}
       variants={buttonConfig.variants}
       modifiers={buttonConfig.modifiers}
       componentTemplate$={buttonComponentTemplate}

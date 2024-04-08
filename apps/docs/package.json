@@ -3,10 +3,5 @@
   "devDependencies": {
     "@types/prismjs": "^1.26.3",
     "wrangler": "^3.0.0"
-  },
-  "scripts": {
-    "build.server": "vite build -c adapters/cloudflare-pages/vite.config.ts",
-    "deploy": "wrangler pages publish ./dist",
-    "serve": "wrangler pages dev ./dist"
   }
 }

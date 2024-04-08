@@ -44,18 +44,11 @@ export type Props = {
 } & SelectElProps;
 export const Component = component$((props: Props) => {
   const { variant, modifiers, ...rest } = props;
-  const bindValue = useSignal(props.value?.toString() || '');
-  useTask$(({ track }) => {
-    track(() => bindValue.value);
-    if (props['bind:value']) {
-      props['bind:value'].value = bindValue.value;
-    }
-  });
+
   return (
     <>
       <select
         {...rest}
-        bind:value={bindValue}
         class={cx(
           props.class,
           cvaFn(variant),

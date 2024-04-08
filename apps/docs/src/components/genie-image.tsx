@@ -1,6 +1,6 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 export type Props = {
-  src: string;
+  source: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -8,29 +8,48 @@ export type Props = {
   decoding?: 'async' | 'auto' | 'sync';
 };
 export default component$((props: Props) => {
-  return (
+  const img = props.source;
+  const src = img;
+  const isBrowser = useSignal(false);
+  useVisibleTask$(() => {
+    isBrowser.value = true;
+  });
+  return isBrowser ? (
     <>
       <picture>
-        <source srcset={`${props.src}?f=avif&w=3840 3840w`} type="image/avif" />
-        <source srcset={`${props.src}?f=avif&w=1920 1920w`} type="image/avif" />
-        <source srcset={`${props.src}?f=avif&w=1280 1280w`} type="image/avif" />
-        <source srcset={`${props.src}?f=avif&w=960 960w`} type="image/avif" />
-        <source srcset={`${props.src}?f=avif&w=640 640w`} type="image/avif" />
-
-        <source srcset={`${props.src}?f=webp&w=3840 3840w`} type="image/webp" />
-        <source srcset={`${props.src}?f=webp&w=1920 1920w`} type="image/webp" />
-        <source srcset={`${props.src}?f=webp&w=1280 1280w`} type="image/webp" />
-        <source srcset={`${props.src}?f=webp&w=960 960w`} type="image/webp" />
-        <source srcset={`${props.src}?f=webp&w=640 640w`} type="image/webp" />
-
-        <source srcset={`${props.src}?w=3840 3840w`} />
-        <source srcset={`${props.src}?w=1920 1920w`} />
-        <source srcset={`${props.src}?w=1280 1280w`} />
-        <source srcset={`${props.src}?w=960 960w`} />
-        <source srcset={`${props.src}?w=640 640w`} />
+        <source
+          srcset={`${src}?f=avif&w=3840 3840w,
+			${src}?f=avif&w=1920 1920w,
+			${src}?f=avif&w=1280 1280w,
+			${src}?f=avif&w=960 960w,
+			${src}?f=avif&w=640 640w,
+			${src}?f=avif&w=384 384w,
+			${src}?f=avif&w=144 144w
+			`}
+          type="image/avif"
+        />
+        <source
+          srcset={`${src}?f=webp&w=3840 3840w,
+					${src}?f=webp&w=1920 1920w,
+					${src}?f=webp&w=1280 1280w,
+					${src}?f=webp&w=960 960w,
+					${src}?f=webp&w=640 640w,
+					${src}?f=webp&w=384 384w,
+					${src}?f=webp&w=144 144w
+					`}
+          type="image/webp"
+        />
 
         <img
-          src={`${props.src}`}
+          srcset={`
+		${src}?w=3840 3840w,
+		${src}?w=1920 1920w,
+		${src}?w=1280 1280w,
+		${src}?w=960 960w,
+		${src}?w=640 640w,
+		${src}?w=384 384w,
+		${src}?w=144 144w
+	`}
           alt={props.alt || 'description'}
           decoding={props.decoding || 'async'}
           loading={props.loading || 'lazy'}
@@ -39,5 +58,5 @@ export default component$((props: Props) => {
         />
       </picture>
     </>
-  );
+  ) : null;
 });

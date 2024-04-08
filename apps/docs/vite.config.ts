@@ -6,6 +6,7 @@ import { qwikNxVite } from 'qwik-nx/plugins';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/docs',
+
   plugins: [
     qwikNxVite(),
     qwikCity(),

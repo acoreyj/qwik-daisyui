@@ -50,7 +50,8 @@ export default component$(() => {
   });
   return (
     <div class="grid grid-cols-1 lg:grid-cols-[max-content_1fr] pt-4 relative">
-      <ul class="menu w-40 rounded-box fixed top-28">
+      <div class="lg:hidden mt-20"></div>
+      <ul class="menu hidden lg:block lg:w-40 rounded-box lg:fixed lg:top-28">
         {components.map((component) => (
           <li key={component}>
             <a
@@ -66,7 +67,7 @@ export default component$(() => {
           </li>
         ))}
       </ul>
-      <div class="flex flex-col gap-6 ml-40">
+      <div class="flex flex-col gap-6 lg:ml-40">
         <ButtonPreview />
         <DaisyLinkPreview />
         <CardPreview />

@@ -5,12 +5,12 @@ import { CodeBlock } from '~/components/code-block/code-block';
 
 export default component$(() => {
   return (
-    <div class="flex flex-col gap-16">
+    <div class="flex flex-col gap-16 mt-20 lg:mt-0">
       <div class="flex flex-col items-center">
-        <h1 class="w-fit flex items-center font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-[#18b6f6] to-[#ac7ef4]">
+        <h1 class="w-fit flex items-center font-extrabold text-transparent text-6xl lg:text-8xl bg-clip-text bg-gradient-to-r from-[#18b6f6] to-[#ac7ef4]">
           Qwik Bits
         </h1>
-        <p class="font-bold text-3xl text-base-content">
+        <p class="font-bold text-xl lg:text-3xl text-base-content">
           Your one stop for accessible components and other helpers for Qwik
         </p>
       </div>
@@ -29,7 +29,7 @@ export default component$(() => {
             Including all the themes, options and modififers daisyUI provides.
           </p>
           <CodeBlock
-            class="font-mono"
+            wrapperClass="font-mono hidden lg:block"
             language="javascript"
             code={'npm install @qwikbits/daisyui @qwikbits/utils'}
           />
@@ -51,7 +51,7 @@ export default component$(() => {
 
           <div class="mt-auto">
             <CodeBlock
-              class="font-mono"
+              wrapperClass="font-mono hidden lg:block"
               language="javascript"
               code={'npm install @qwikbits/utils'}
             />
@@ -62,7 +62,7 @@ export default component$(() => {
           </p>
 
           <CodeBlock
-            class="font-mono"
+            wrapperClass="font-mono hidden lg:block"
             language="javascript"
             code={
               '<Button variant={{"theme":"primary"}} modifiers={{"outline":true,"glass":true,"no-animation":false}}}>Button</Button>'

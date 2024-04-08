@@ -2,6 +2,7 @@ import { denoServerAdapter } from '@builder.io/qwik-city/adapters/deno-server/vi
 import { extendConfig } from '@builder.io/qwik-city/vite';
 import baseConfig from '../../vite.config';
 
+//@ts-ignore
 export default extendConfig(baseConfig, () => {
   return {
     build: {

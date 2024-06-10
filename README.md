@@ -16,3 +16,6 @@ The most popular component library for Tailwind CSS as Qwik components.
 ## [Docs](https://www.qwikbits.dev/)
 
 https://www.qwikbits.dev/
+
+
+Thank you [Jetbrains](https://www.jetbrains.com/community/opensource/) for providing license to their great software to assist in development of this project
